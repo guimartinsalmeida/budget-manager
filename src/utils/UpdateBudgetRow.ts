@@ -6,6 +6,8 @@ export const UpdateBudgetRow = async (values : BudgetItem, id : number) => {
     id: id.toString()
   });
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const data = {
     'id': id.toString(),
     'Compra': values.Compra,
@@ -14,7 +16,7 @@ export const UpdateBudgetRow = async (values : BudgetItem, id : number) => {
     'Custo': values.Custo.toString()
   };
 
-  const url = 'https://sheet2api.com/v1/hHc1XeB4SEea/planilha-sem-titulo/P%C3%A1gina1?' + queryParams;
+  const url = apiUrl + queryParams;
 
   try {
    await fetch(url, {

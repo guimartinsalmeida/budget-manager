@@ -8,14 +8,13 @@ interface dataProps {
 }
 function PieCharts({ data } : dataProps) {
   const colors = [
-    '#FF6384', // Red
-    '#36A2EB', // Blue
-    '#566cff', // Yellow
-    '#4b4fc0', // Green
-    '#8266ff', // Purple
-    '#FF9F40', // Orange
+    '#173C2F', 
+    '#396656', 
+    '#ABE6D1', 
+    '#699183', 
+    '#AAE6E5', 
+    '#ACE6AA', 
   ];
-
   const categoriaCustoMap: {[key: string] : string } = {};
 
   data?.forEach((item) => {

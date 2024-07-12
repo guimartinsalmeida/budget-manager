@@ -1,8 +1,9 @@
 import { BudgetItem } from "../types/BudgetItem";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export const CreateBudgetRow = async ( values: BudgetItem ) =>{
 const bodyValues = JSON.stringify(values)
-const url = 'https://sheet2api.com/v1/hHc1XeB4SEea/planilha-sem-titulo/P%C3%A1gina1';
+const url = apiUrl;
 
 const sendNewRow = async () =>{
 
