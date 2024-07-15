@@ -65,8 +65,8 @@ function DateFilter({ data }: DateFilterProps) {
       ) : (
         <p className="mb-4">Custo total:</p>
       )}
-      <div className="w-full flex justify-center items-center flex-col">
-        <div className="w-full md:w-6/12 border border-gray-200 bg-gray-100 rounded-md p-4">
+      <div className="w-full flex justify-center items-center flex-col ">
+        <div className="w-full max-h-40 overflow-y-auto md:w-6/12 border border-gray-200 bg-gray-100 rounded-md p-4">
           {filteredTotal ? (
             filteredItems.map((item, index) => (
               <div key={index} className="mb-2">

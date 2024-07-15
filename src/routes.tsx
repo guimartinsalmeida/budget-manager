@@ -8,7 +8,7 @@ function MainRoutes(){
   return(
     <Router>
       <Routes>
-        <Route path="/home"element={<App/>}></Route>
+        <Route path="/"element={<App/>}></Route>
         <Route path="/form/:status/:id"element={<CreateRowForm/>}></Route>
         <Route path="/form/:status"element={<CreateRowForm/>}></Route>
       </Routes>

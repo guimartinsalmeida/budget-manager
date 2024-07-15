@@ -21,14 +21,17 @@ function CreateRowForm() {
       Data: today,
     },
     onSubmit: async values => {
-      if (status === 'create') {
-        await CreateBudgetRow(values);
-        await loadBudgetData()
-      } else {
-        await UpdateBudgetRow(values, Number(id));
+      try {
+        if (status === 'create') {
+           CreateBudgetRow(values);
+         } else {
+           UpdateBudgetRow(values, Number(id));
+         }
          loadBudgetData()
+         navigate('/')
+      } catch (error) {
+        console.log('Erro in form submision', error)
       }
-      navigate('/home')
     }
   });
   return (
