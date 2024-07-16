@@ -5,6 +5,7 @@ import { UpdateBudgetRow } from '../utils/UpdateBudgetRow';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { loadBudgetData } from '../utils/LoadBudgetData';
+
 function CreateRowForm() {
   const navigate = useNavigate();
   const { status, id } = useParams();
@@ -20,82 +21,89 @@ function CreateRowForm() {
       Custo: '',
       Data: today,
     },
-    onSubmit: async values => {
+    onSubmit: async (values) => {
       try {
         if (status === 'create') {
-           CreateBudgetRow(values);
-         } else {
-           UpdateBudgetRow(values, Number(id));
-         }
-         loadBudgetData()
-         navigate('/')
+          await CreateBudgetRow(values);
+        } else {
+          await UpdateBudgetRow(values, Number(id));
+        }
+        loadBudgetData();
+        navigate('/');
       } catch (error) {
-        console.log('Erro in form submision', error)
+        console.log('Erro in form submision', error);
       }
     }
   });
+  
   return (
-    <div className='flex justify-center items-center h-screen'>
+    <div className="flex justify-center items-center h-screen">
       <form 
         onSubmit={formik.handleSubmit}
-        className="rounded-lg shadow-md w-full max-w-md"
+        className="bg-white p-8 rounded-lg shadow-md w-full max-w-md"
       >
-        {status === "update" ? <h1>Edite a Coluna</h1> : <h1>Crie uma nova coluna</h1>}
+        <h1 className="text-2xl font-semibold mb-6 text-gray-800">
+          {status === "update" ? "Edite a Coluna" : "Crie uma nova coluna"}
+        </h1>
         
         <div className="mb-4">
-          <label htmlFor="Compra" className="block text-white">Compra</label>
+          <label htmlFor="Compra" className="block text-gray-700 font-medium">Compra</label>
           <input
             id="Compra"
             name="Compra"
             type="text"
             onChange={formik.handleChange}
+            required
             value={formik.values.Compra}
-            placeholder={'Que Produto ?'}
-            className="text-black block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="Que Produto?"
+            className="mt-1 block w-full px-3 py-2 text-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
           />
         </div>
 
         <div className="mb-4">
-          <label htmlFor="Categoria" className="block text-white">Categoria</label>
+          <label htmlFor="Categoria" className="block text-gray-700 font-medium">Categoria</label>
           <input
             id="Categoria"
             name="Categoria"
             type="text"
+            required
             onChange={formik.handleChange}
-            placeholder={'Categoria de Produto'}
             value={formik.values.Categoria}
-            className="mt-1 text-black block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="Categoria de Produto"
+            className="mt-1 block w-full px-3 text-white py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
           />
         </div>
 
         <div className="mb-4">
-          <label htmlFor="Custo" className="block text-white">Custo</label>
+          <label htmlFor="Custo" className="block text-gray-700 font-medium">Custo</label>
           <input
             id="Custo"
             name="Custo"
-            type="text"
+            type="number"
+            required
             onChange={formik.handleChange}
-            placeholder={'Custo Produto'}
             value={formik.values.Custo}
-            className="mt-1 block w-full text-black px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="Custo Produto"
+            className="mt-1 block w-full text-white px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
           />
         </div>
 
         <div className="mb-4">
-          <label htmlFor="Data" className="block text-white">Data</label>
+          <label htmlFor="Data" className="block text-gray-700 font-medium">Data</label>
           <DatePicker
             id="Data"
             name="Data"
-            onChange={date => formik.setFieldValue('Data', date?.toLocaleDateString())}            
+            onChange={(date) => formik.setFieldValue('Data', date?.toLocaleDateString())}            
             value={formik.values.Data}
+            required
             dateFormat="yyyy-MM-dd"
-            className="mt-1 block w-full text-black px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="mt-1 block w-full px-3 py-2 border  text-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
           />
         </div>
 
         <button 
           type="submit"
-          className="w-full py-2 px-4 bg-green-600 text-white font-semibold rounded-md shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          className="w-full py-2 px-4  bg-green-600 text-white font-semibold rounded-md shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
         >
           Enviar
         </button>
