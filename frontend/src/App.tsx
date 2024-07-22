@@ -24,7 +24,6 @@ function App() {
     DeleteBudgetRow(item)
    setData((prev) => (prev ? prev.filter( d => d != item) : []))
   };
-
   return (
     <>
     <div className="flex justify-around items-center h-screen flex-col">
