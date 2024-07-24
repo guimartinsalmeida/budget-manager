@@ -35,14 +35,14 @@ function DateFilter({ data }: DateFilterProps) {
 
   return (
     <div className="date-filter">
-      <div className="flex justify-around items-center mb-4">
+      <div className="flex p-4 md:p-0 justify-around items-center mb-4">
         <div>
           <label htmlFor="start-date">Data Início:</label>
           <DatePicker
             selected={startDate}
             onChange={(date) => setStartDate(date)}
             dateFormat="yyyy-MM-dd"
-            className="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 text-sm text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="appearance-none bg-white border border-gray-300 rounded-md px-4 w-full py-2 text-sm text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
         </div>
         <div>
@@ -56,7 +56,7 @@ function DateFilter({ data }: DateFilterProps) {
             selected={endDate}
             onChange={(date) => setEndDate(date)}
             dateFormat="yyyy-MM-dd"
-            className="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 text-sm text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className=" w-full appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 text-sm text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
         </div>
       </div>
@@ -66,7 +66,12 @@ function DateFilter({ data }: DateFilterProps) {
         <p className="mb-4">Custo total:</p>
       )}
       <div className="w-full flex justify-center items-center flex-col ">
-        <div className="w-full max-h-40 overflow-y-auto md:w-6/12 border border-gray-200 bg-gray-100 rounded-md p-4">
+        {data?.length === 0 ? (
+          <div className="w-11/12 max-h-40 overflow-y-auto md:w-6/12 border border-gray-200 bg-gray-100 rounded-md p-4">
+          <p>Sem Custos Registrados</p>
+          </div>
+        ):(
+          <div className="w-11/12 max-h-40 overflow-y-auto md:w-6/12 border border-gray-200 bg-gray-100 rounded-md p-4">
           {filteredTotal ? (
             filteredItems.map((item, index) => (
               <div key={index} className="mb-2">
@@ -81,6 +86,11 @@ function DateFilter({ data }: DateFilterProps) {
             ))
           )}
         </div>
+
+        )
+        
+        }
+       
       </div>
     </div>
   );

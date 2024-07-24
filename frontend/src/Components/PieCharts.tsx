@@ -32,6 +32,18 @@ function PieCharts({ data } : dataProps) {
 
 
 
+  const nochartData = {
+    labels: ['Sem Compras Registradas'],
+    datasets: [
+      {
+        data: [1],
+        backgroundColor: ['gray'],
+        hoverBackgroundColor: ['gray'],
+      },
+    ],
+  };
+
+
   const chartData = {
     labels: filterCategorias,
     datasets: [
@@ -46,9 +58,19 @@ function PieCharts({ data } : dataProps) {
   const options = {
     maintainAspectRatio: false,
   };
+
+  console.log('data comming from pie chart ', data)
   return (
     <div className='w-96 h-96'>
-      <Doughnut data={chartData} options={options} />
+      {
+        data?.length === 0 ? (
+          <Doughnut data={nochartData} options={options} />
+        )
+         : (
+          <Doughnut data={chartData} options={options} />
+         )  
+      }
+      
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { DeleteBudgetRow } from "./utils/DeleteBudgetRow";
 import PieCharts from "./Components/PieCharts";
 import DateFilter from "./Components/DateFilter";
 import { BudgetItem } from "./types/BudgetItem";
-import Edit from './assets/image-removebg-preview.png'
+import Edit from './assets/image-removebg-preview.png' 
 import Trash from './assets/cesto-de-lixo.png'
 
 function App() {
@@ -27,19 +27,19 @@ function App() {
   return (
     <>
     <div className="flex justify-around items-center h-screen flex-col">
-    <div className="flex items-center w-full">
-    
-    <div className="w-1/2 h-full">
-    <DateFilter data={data} />
+    <div className="flex flex-col justify-center md:flex-row items-center w-full">
+    <div className="w-full md:w-1/2 h-full">
+        <DateFilter data={data} />
     </div>
-    <div className="flex justify-center w-1/2">
+    <div className="flex justify-center w-full md:w-1/2">
         <PieCharts data={data}/>
     </div>
-    </div>
+</div>
+
     
-      <div className="w-full flex justify-center flex-col items-center">
+      <div className="w-full mt-4 md:mt-0 flex justify-center flex-col items-center">
         {data ? (
-          <><div className=" w-4/5 max-h-96 overflow-y-auto">
+          <><div className="w-11/12 md:w-4/5 max-h-96 overflow-y-auto">
               <table className="w-full font-bold text-left border border-gray-200 divide-y divide-gray-200 ">
                 <thead className="sticky top-0">
                   <tr className="bg-gray-200">
