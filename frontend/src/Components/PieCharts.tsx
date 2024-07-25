@@ -18,18 +18,19 @@ function PieCharts({ data } : dataProps) {
   const categoriaCustoMap: {[key: string] : string } = {};
 
   data?.forEach((item) => {
-    if (categoriaCustoMap[item.Categoria]) {
-      categoriaCustoMap[item.Categoria] += item.Custo;
-    } else {
-      categoriaCustoMap[item.Categoria] = item.Custo;
+    if (item.Categoria && item.Custo) {
+      if (categoriaCustoMap[item.Categoria]) {
+        categoriaCustoMap[item.Categoria] = (parseFloat(categoriaCustoMap[item.Categoria]) + parseFloat(item.Custo)).toString();
+      } else {
+        categoriaCustoMap[item.Categoria] = item.Custo;
+      }
     }
   });
-
-  const categorias = data?.map((item) => item.Categoria);
-  const filterCategorias = categorias?.filter((item, index) => categorias.indexOf(item) === index);
-
-  const custos = filterCategorias?.map((categoria) => categoriaCustoMap[categoria]);
-
+  const categorias = data?.map((item) => item.Categoria).filter((categoria): categoria is string => categoria !== null);
+  const filterCategorias = categorias ? Array.from(new Set(categorias)) : [];
+  
+  const custos = filterCategorias.map((categoria) => parseFloat(categoriaCustoMap[categoria] || '0'));
+  
 
 
   const nochartData = {
