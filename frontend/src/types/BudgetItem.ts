@@ -1,7 +1,7 @@
 export interface BudgetItem{
   id: number,
-  Compra: string,
-  Categoria: string,
-  Custo: string,
-  Data: string
+  Compra: string | null,
+  Categoria: string | null ,
+  Custo: string | null,
+  Data: string | null
 }
