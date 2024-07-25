@@ -10,10 +10,10 @@ export const UpdateBudgetRow = async (values : BudgetItem, id : number) => {
 
   const data = {
     'id': id.toString(),
-    'Compra': values.Compra,
-    'Categoria': values.Categoria,
-    'Data': values.Data,
-    'Custo': values.Custo.toString()
+    'Compra': values?.Compra,
+    'Categoria': values?.Categoria,
+    'Data': values?.Data,
+    'Custo': values?.Custo != null ? values.Custo.toString() : '0'
   };
 
   const url = apiUrl + queryParams;
